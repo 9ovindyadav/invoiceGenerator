@@ -1,0 +1,18 @@
+{
+  "name": "invoicegenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google-cloud/local-auth": "^2.1.0",
+    "googleapis": "^105.0.0",
+    "jspdf": "^2.5.1",
+    "easyinvoice": "2.3.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

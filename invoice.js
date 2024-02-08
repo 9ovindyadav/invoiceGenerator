@@ -21,7 +21,9 @@ var data = {
         "country": "Samplecountry"
     },
 
-
+    "images":{
+        "logo": process.env.PWD+'logo.png'
+    },
     // Let's add some standard invoice data, like invoice number, date and due-date
     "information": {
         // Invoice number

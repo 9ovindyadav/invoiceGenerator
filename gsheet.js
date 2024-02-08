@@ -3,6 +3,7 @@ const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
+const { jsPDF } = require("jspdf");
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
@@ -50,16 +51,23 @@ async function listMajors(auth) {
   const sheets = google.sheets({version: 'v4', auth});
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: '1jtogX_Krjv2xGjBAukmBoKWXCpUHNL3nlAFWZWFDMiM',
-    range: 'Data!A1:E',
+    range: 'Data!A1:K',
   });
   const rows = res.data.values;
   if (!rows || rows.length === 0) {
     console.log('No data found.');
     return;
   }
-  rows.forEach((row) => {
-    console.log(row);
-  });
+  return rows;
 }
 
-authorize().then(listMajors).catch(console.error);
+function genPDF(data){
+console.log(data);
+ data.forEach((user,i) => {
+  const doc = new jsPDF();
+doc.text(`Hello ${user[1]} `, 10, 10);
+doc.save(`a${i}.pdf`);
+ })
+}
+
+authorize().then(listMajors).then((data) => genPDF(data)).catch(console.error);

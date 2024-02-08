@@ -62,11 +62,22 @@ async function listMajors(auth) {
 }
 
 function genPDF(data){
-console.log(data);
- data.forEach((user,i) => {
-  const doc = new jsPDF();
-doc.text(`Hello ${user[1]} `, 10, 10);
-doc.save(`a${i}.pdf`);
+    const keys = data[0];
+    const dataWithoutKeys = data.slice(1);
+
+    dataWithoutKeys.forEach((user,i) => {
+        
+        const record = {};
+        keys.forEach((key,j) => {
+            record[key] = user[j];
+        });
+    
+    const recordString = Object.entries(record)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n');
+    const doc = new jsPDF();
+    doc.text(recordString, 10, 10);
+    doc.save(`invoice-${i}.pdf`);
  })
 }
 

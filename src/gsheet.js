@@ -47,7 +47,7 @@ async function authorize() {
   return client;
 }
 
-async function listMajors(auth) {
+async function getData(auth) {
   const sheets = google.sheets({version: 'v4', auth});
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: '1jtogX_Krjv2xGjBAukmBoKWXCpUHNL3nlAFWZWFDMiM',
@@ -61,24 +61,14 @@ async function listMajors(auth) {
   return rows;
 }
 
-function genPDF(data){
-    const keys = data[0];
-    const dataWithoutKeys = data.slice(1);
-
-    dataWithoutKeys.forEach((user,i) => {
-        
-        const record = {};
-        keys.forEach((key,j) => {
-            record[key] = user[j];
-        });
-    
-    const recordString = Object.entries(record)
-        .map(([key, value]) => `${key}: ${value}`)
-        .join('\n');
-    const doc = new jsPDF();
-    doc.text(recordString, 10, 10);
-    doc.save(`invoice-${i}.pdf`);
- })
+async function main(){
+  try {
+    const auth = await authorize();
+    const data = await getData(auth);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-authorize().then(listMajors).then((data) => genPDF(data)).catch(console.error);
+module.exports = main;

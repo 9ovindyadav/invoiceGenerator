@@ -40,7 +40,7 @@ function doGet(req){
 9. Copy the `script link` and `run` in `browser's address bar`
 
 #### Deployment page
-!(Deployment page)[./assets/images/deployment.png]
+!(Deployment page)[assets/images/deployment.png]
 
 #### Script link page
-!(Script link page)[./assets/images/scriptlink.png]
+!(Script link page)[assets/images/scriptlink.png]

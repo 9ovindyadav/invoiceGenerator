@@ -1,5 +1,10 @@
 # Invoice Generator
 
+## Project Features
+1. Get Data as a JSON response from Google sheets
+2. Generate new PDF's from response data such as invoices or anything you want with your personal template
+3. Send Email to each user with there generated PDF via SMTP Server
+
 ## Google sheet as a API
 - Getting JSON response
 - First row as a key and others as a value
@@ -13,7 +18,7 @@
 5. Name the `App Script` as the same name as your `worksheet`
 6. Copy paste the below code in `Code.gs` file
 
-```
+```javascript
 function doGet(req){
   var sheetName = 'Your sheet name';
   var doc = SpreadsheetApp.getActiveSpreadsheet();
@@ -40,7 +45,8 @@ function doGet(req){
 9. Copy the `script link` and `run` in `browser's address bar`
 
 #### Deployment page
-!(Deployment page)[assets/images/deployment.png]
+!(Deployment page)[https://res.cloudinary.com/dnkelaevp/image/upload/v1707640852/github/invoiceGenerator/deployment_gpsdc8.png]
 
 #### Script link page
-!(Script link page)[assets/images/scriptlink.png]
+!(Script link page)[https://res.cloudinary.com/dnkelaevp/image/upload/v1707640852/github/invoiceGenerator/scriptlink_juo8f2.png]
+

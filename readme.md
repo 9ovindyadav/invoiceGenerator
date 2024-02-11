@@ -63,3 +63,6 @@ function doGet(req){
 ![Deployment page](assets/images/deployment.png)
 #### Script link page
 ![Script link page](assets/images/scriptlink.png)
+
+#### Example Googl sheet
+![Example Google sheet](assets/images//gsheet.png)

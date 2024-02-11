@@ -5,6 +5,21 @@
 2. Generate new PDF's from response data such as invoices or anything you want with your personal template
 3. Send Email to each user with there generated PDF via SMTP Server
 
+## Requirements
+- `NodeJs` must be installed
+- `Google sheet` setup as described below in the `readme.md` to get data
+
+## Project setup
+1. Clone the repository from github via git on your laptop
+```bash
+git clone https://github.com/9ovindyadav/invoiceGenerator.git
+```
+2. Rename the `.env.example` file to `.env` and enter the credentials
+3. Before running the script make sure you have entered all the credentials in `.env` and `Google sheet` is all set
+4. To run the app enter the below command
+```bash
+node app.js
+``` 
 ## Google sheet as a API
 - Getting JSON response
 - First row as a key and others as a value

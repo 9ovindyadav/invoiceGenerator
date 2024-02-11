@@ -1,23 +1,27 @@
+const fs = require('fs');
 const { jsPDF } = require("jspdf");
 
-function genPdf(data){
-    const keys = data[0];
-    const dataWithoutKeys = data.slice(1);
+function genPdf(data, directory){
+    const keys = Object.keys(data[0]);
 
-    dataWithoutKeys.forEach((user,i) => {
+    let counter = 1;
+    if(!fs.existsSync(directory)){
+        fs.mkdirSync(directory, {recursive: true});
+    }
+
+    const paths = [];
+    for(const user of data){
         
-        const record = {};
-        keys.forEach((key,j) => {
-            record[key] = user[j];
-        });
-    
-    const recordString = Object.entries(record)
-        .map(([key, value]) => `${key}: ${value}`)
-        .join('\n');
-    const doc = new jsPDF();
-    doc.text(recordString, 10, 10);
-    doc.save(`assets/invoices/invoice-${i}.pdf`);
- })
+        const recordString = Object.entries(user)
+            .map(([key, value]) => `${key}: ${value}`)
+            .join('\n');
+        const doc = new jsPDF();
+        doc.text(recordString, 10, 10);
+        const path = `${directory}/invoice-${counter++}.pdf`;
+        doc.save(path);
+        paths.push(path);
+    }
+    return paths;
 }
 
 module.exports = genPdf;

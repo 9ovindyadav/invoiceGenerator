@@ -1,3 +1,4 @@
+const fs = require('fs');
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
@@ -32,4 +33,34 @@ async function sendEmail(optionsArr){
     }
 }
 
-module.exports = sendEmail;
+async function email(data, filePaths){
+    const fromMail = process.env.FROM_EMAIL;
+    const fromName = process.env.FROM_NAME;
+    let counter = 0;
+    const optionsArr = [];
+
+    for(const user of data){
+        const options = {
+            from: fromMail,
+            to: user['email'],
+            subject: `Test mail for ${user['name']}`,
+            text: `Hello ${user['name']} this is system generated mail from ${fromName} .`,
+            html: `Hello ${user['name']} this is system generated mail from ${fromName} .`,
+            attachments: [
+                {
+                    filename: 'invoice.pdf',
+                    content: fs.createReadStream(`${filePaths[counter++]}`)
+                }
+            ]
+        };
+
+        optionsArr.push(options);
+    }
+    const result = await sendEmail(optionsArr);
+    result.forEach((res) => {
+        console.log(`Email sent to - ${res.accepted[0]}`);
+    });
+    return true;
+}
+
+module.exports = email;

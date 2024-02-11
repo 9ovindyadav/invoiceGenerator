@@ -45,8 +45,6 @@ function doGet(req){
 9. Copy the `script link` and `run` in `browser's address bar`
 
 #### Deployment page
-!(Deployment page)[https://res.cloudinary.com/dnkelaevp/image/upload/v1707640852/github/invoiceGenerator/deployment_gpsdc8.png]
-
+![Deployment page](assets/images/deployment.png)
 #### Script link page
-!(Script link page)[https://res.cloudinary.com/dnkelaevp/image/upload/v1707640852/github/invoiceGenerator/scriptlink_juo8f2.png]
-
+![Script link page](assets/images/scriptlink.png)
